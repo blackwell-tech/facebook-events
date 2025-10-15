@@ -3,22 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Data Deletion Instructions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+    ol {
+      text-align: left;
+      margin: 15px auto;
+      padding-left: 20px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Facebook App Data Deletion Instructions</h1>
-  <p>
-    This app only reads events from your Facebook page. No personal data is stored.
-  </p>
-  <p>
-    To revoke access or delete any data, go to your Facebook account, then:
-  </p>
-  <ol>
-    <li>Settings &gt; Business Integrations</li>
-    <li>Find the app named “[Your App Name]”</li>
-    <li>Click “Remove”</li>
-  </ol>
-  <p>
-    After removing the app, all access is revoked immediately.
-  </p>
+  <div class="container">
+    <h1>Facebook App Data Deletion Instructions</h1>
+    <p>This app only reads events from your Facebook page. No personal data is stored.</p>
+    <p>To revoke access or delete any data, go to your Facebook account, then:</p>
+    <ol>
+      <li>Settings &gt; Business Integrations</li>
+      <li>Find the app named “Events For Websites”</li>
+      <li>Click “Remove”</li>
+    </ol>
+    <p>After removing the app, all access is revoked immediately.</p>
+  </div>
 </body>
 </html>
