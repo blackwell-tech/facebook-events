@@ -2,41 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Facebook Events Test</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
     }
-    .content {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .container {
       text-align: center;
-      width: 80%;
-      max-width: 600px;
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
     }
-    h1 {
-      color: #333;
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      background-color: #1877f2;
+      color: white;
+      cursor: pointer;
     }
-    p {
-      color: #666;
+    button:hover {
+      background-color: #155db2;
+    }
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
     }
   </style>
 </head>
 <body>
-  <div class="content">
+  <div class="container">
     <h1>Facebook Events App Test</h1>
-    <p>This page is used to test the Facebook Events app integration.</p>
-    <p>It does not display actual events yet; it’s just a placeholder for app review purposes.</p>
+    <p>Click the button to authorize a Facebook Page.</p>
+    <button id="loginBtn">Connect Facebook Page</button>
+    <div id="status"></div>
   </div>
+
+  <!-- Load the Facebook SDK -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1610456500398060', // <-- Replace with your App ID
+        cookie     : true,
+        xfbml      : false,
+        version    : 'v17.0'
+      });
+    };
+
+    document.getElementById('loginBtn').addEventListener('click', function() {
+      FB.login(function(response) {
+        if (response.authResponse) {
+          FB.api('/me/accounts', function(response) {
+            if(response && !response.error) {
+              document.getElementById('status').textContent = "Authorization successful!";
+              console.log(response); // This logs the page data / events for testing
+            } else {
+              document.getElementById('status').textContent = "Error retrieving pages.";
+            }
+          });
+        } else {
+          document.getElementById('status').textContent = "Login cancelled or failed.";
+        }
+      }, {scope: 'pages_read_engagement'});
+    });
+  </script>
 </body>
 </html>
